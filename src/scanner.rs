@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 
 use crate::{error::LoxError, token::Token, token_type::TokenType};
 
@@ -189,7 +188,7 @@ impl Scanner {
         }
 
         let text = &self.source[self.start..self.current];
-        let token_type = keywordToTokenType(text);
+        let token_type = keyword_to_token_type(text);
 
         self.add_token(token_type, None);
     }
@@ -207,7 +206,7 @@ impl Scanner {
     }
 }
 
-fn keywordToTokenType(keyword: &str) -> TokenType {
+fn keyword_to_token_type(keyword: &str) -> TokenType {
     match keyword {
         "and" => TokenType::And,
         "class" => TokenType::Class,
