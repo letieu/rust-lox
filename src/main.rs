@@ -1,9 +1,14 @@
 mod error;
-mod token_type;
-mod token;
 mod scanner;
+mod token;
+mod token_type;
 
-use std::{env::args, process, fs, io::{self, BufRead}};
+use std::{
+    env::args,
+    fs,
+    io::{self, BufRead},
+    process,
+};
 
 use scanner::Scanner;
 
@@ -31,13 +36,14 @@ fn run_file(path: &str) -> Result<(), std::io::Error> {
 
 fn run_prompt() {
     let stdin = io::stdin();
-
     print!("> ");
+
     for line in stdin.lock().lines() {
         if let Ok(line) = line {
             if line.is_empty() {
                 break;
             }
+            run(line);
         } else {
             break;
         }
